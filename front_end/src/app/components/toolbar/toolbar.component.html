@@ -1,0 +1,22 @@
+<mat-toolbar class="toolbar">
+    <mat-toolbar-row>
+        <span class="example-spacer"></span>
+        <!-- <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon">favorite</mat-icon> -->
+        <!-- <mat-icon class="example-icon" aria-hidden="false" aria-label="Example delete icon">delete</mat-icon> -->
+        
+        <div>
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="logout()">
+                  <mat-icon>dialpad</mat-icon>
+                  <span>Cerrar sesion</span>
+                </button>
+              </mat-menu>
+              
+        </div>
+
+          
+    </mat-toolbar-row>
+</mat-toolbar>
