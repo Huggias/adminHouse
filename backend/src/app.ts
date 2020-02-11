@@ -8,7 +8,8 @@ const cors = require('cors')
 
 import IndexRoutes from './routes/index.routes';
 import UsersRoutes from './routes/users.routes';
-import CompRoutes from "./routes/compradores.routes";
+import ComprasRoutes from "./routes/compras.routes";
+
 import { verifyToken } from "./middlewares/sigin.middlewares";
 // import Colors = require('colors.ts');
 
@@ -38,7 +39,7 @@ export class App {
     routes() { 
         this.app.use(IndexRoutes);
         this.app.use('/log',UsersRoutes);
-        this.app.use('/api', CompRoutes);
+        this.app.use('/api',ComprasRoutes);
     }
 
     async listen(){

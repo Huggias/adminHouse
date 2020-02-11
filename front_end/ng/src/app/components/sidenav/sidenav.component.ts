@@ -13,8 +13,8 @@ export class SidenavComponent implements OnInit {
 
   ngOnInit() {
   }
-  prueba(){
+  compras(){
     // console.log("hola mundo");
-    this.router.navigate(['/prueba']);
+    this.router.navigate(['/compras']);
   }
 }

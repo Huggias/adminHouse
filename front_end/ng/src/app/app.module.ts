@@ -26,6 +26,8 @@ import { EstadisticasComponent } from './components/estadisticas/estadisticas.co
 import { InterfazComponent } from './components/interfaz/interfaz.component';
 import { from } from 'rxjs';
 import { LoginDialogErrorComponent } from './components/login-dialog-error/login-dialog-error.component';
+import { ComprasComponent } from './components/compras/compras.component';
+import { CardcoComponent } from './components/cardco/cardco.component';
 
 /* guars */
 import { AuthGuard } from "./guards/auth.guard";
@@ -33,6 +35,8 @@ import { AuthGuard } from "./guards/auth.guard";
 /* interceptors */
 
 import { TokenInterceptorService } from "./services/token-interceptor.service";
+import { TablaComponent } from './components/tabla/tabla.component';
+import { InfoComprasComponent } from './components/info-compras/info-compras.component';
 
 
 @NgModule({
@@ -46,7 +50,11 @@ import { TokenInterceptorService } from "./services/token-interceptor.service";
     ToolbarComponent,
     EstadisticasComponent,
     InterfazComponent,
-    LoginDialogErrorComponent
+    LoginDialogErrorComponent,
+    ComprasComponent,
+    CardcoComponent,
+    TablaComponent,
+    InfoComprasComponent
   ],
   imports: [
     BrowserModule,

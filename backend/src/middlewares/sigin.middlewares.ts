@@ -1,5 +1,5 @@
 import { Response, Request, NextFunction } from "express";
-import jwt from "jsonwebtoken";
+import jwt, { verify } from "jsonwebtoken";
 import { tokenKey } from "../keys";
 export function verifyToken( req : Request, res : Response, next : NextFunction ){
     if (!req.headers.authorization) {

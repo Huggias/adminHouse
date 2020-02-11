@@ -23,7 +23,10 @@ import {
     MatPaginatorModule,
     MatMenuModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatCardModule,
+    MatTabsModule,
+    MatProgressBarModule
  } from '@angular/material';
 
 
@@ -50,7 +53,10 @@ import {
        FlexLayoutModule,
        MatMenuModule,
        MatDialogModule,
-       MatSnackBarModule
+       MatSnackBarModule,
+       MatCardModule,
+       MatTabsModule,
+       MatProgressBarModule
     ],
     exports: [
        MatButtonModule,
@@ -71,7 +77,10 @@ import {
        MatPaginatorModule,
        MatMenuModule,
        MatDialogModule,
-       MatSnackBarModule
+       MatSnackBarModule,
+       MatCardModule,
+       MatTabsModule,
+       MatProgressBarModule
     ],
     providers: [
        MatDatepickerModule,
