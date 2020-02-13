@@ -35,6 +35,8 @@ import { AuthGuard } from "./guards/auth.guard";
 /* interceptors */
 
 import { TokenInterceptorService } from "./services/token-interceptor.service";
+
+
 import { TablaComponent } from './components/tabla/tabla.component';
 import { InfoComprasComponent } from './components/info-compras/info-compras.component';
 

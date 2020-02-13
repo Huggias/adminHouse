@@ -26,3 +26,10 @@ export  function createCompra(req:Request, res:Response):Response{
     sqlCompra.createCompra(newCompra, tokenObj._id);
     return res.json("compra creada");
 }
+
+export function deleteCompra(req:Request, res:Response){
+    const delCompra  = req.body;
+    console.log("borrando compra: ", delCompra.id);
+    sqlCompra.deleteCompra(delCompra.id);
+    return res.json("compra eliminada");
+}

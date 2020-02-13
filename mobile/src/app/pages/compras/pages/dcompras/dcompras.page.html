@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Detalle de las compras</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div style="width: 100%; height: 100%; background-color: #f4f4f4;">
+      <ion-list *ngIf="this.items != undefined" style="background-color: #f4f4f4;">
+  
+        <ion-card style="background-color: white;" *ngFor="let item of items">
+          <ion-card-header>
+            <table style="width: 100%;">
+              <tr>
+                <td width="50%">{{item.username}}</td>
+                <td width="50%" style="text-align: right;">{{item.precio}} $</td>
+              </tr>
+            </table>
+          </ion-card-header>
+  
+          <ion-card-content>
+            <table style="width: 100%;">
+              <tr>
+                <td width="50%">{{item.descripcion}}</td>
+                <td width="50%" style="text-align: right; font-size: 1.5em;"><ion-icon style="cursor: pointer" ios="ios-trash" md="md-trash" (click)="handleButtonClick(item.idCompra)"></ion-icon></td>
+              </tr>
+            </table>
+          </ion-card-content>
+        </ion-card>
+  
+      </ion-list>
+    </div>
+
+
+</ion-content>

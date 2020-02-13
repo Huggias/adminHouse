@@ -11,6 +11,11 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http"
 
+import { TokenInterceptorService } from "./services/token-interceptor.service";
+import { URL_SERVER } from "../URL_SERVER";
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+const config: SocketIoConfig = { url: URL_SERVER, options: {} };
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -18,12 +23,18 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http"
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    SocketIoModule.forRoot(config)
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass : TokenInterceptorService,
+      multi : true
+    }
   ],
   bootstrap: [AppComponent]
 })

@@ -3,9 +3,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const users_controller_1 = require("../controllers/users.controller");
 const router = express_1.Router();
-router.route('/')
-    .get(users_controller_1.getUsers)
-    .post(users_controller_1.createUsers);
-router.route('/:userid')
+router.route('/getUsers')
+    .get(users_controller_1.getUsers);
+router.route('/getUser/:userid')
     .get(users_controller_1.getUser);
+router.route('/signUp')
+    .post(users_controller_1.createUser);
+router.route('/logIn')
+    .post(users_controller_1.signIn);
 exports.default = router;

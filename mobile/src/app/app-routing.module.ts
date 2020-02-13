@@ -9,39 +9,37 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: './pages/home/home.module#HomePageModule'
-
-    // children : [
-    //   {
-    //     path : '',
-    //     loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
-    //   },
-    //   {
-    //     path: 'compras',
-    //     loadChildren: () => import('./pages/compras/compras.module').then( m => m.ComprasPageModule)
-    //   }
-    // ]
+    children : [
+      {
+        path : '',
+        loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
+      }
+    ]
   },
   {
     path: 'list',
-    loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
+    loadChildren: () => import('./pages/list/list.module').then(m => m.ListPageModule)
   },
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'tab1',
-    loadChildren: () => import('./tab1/tab1.module').then( m => m.Tab1PageModule)
+    path: 'compras',
+    loadChildren: () => import('./pages/compras/compras.module').then( m => m.ComprasPageModule)
   },
   {
-    path: 'tab2',
-    loadChildren: () => import('./tab2/tab2.module').then( m => m.Tab2PageModule)
+    path: 'gcompras',
+    loadChildren: () => import('./pages/home/pages/gcompras/gcompras.module').then( m => m.GcomprasPageModule)
   },
   {
-    path: 'tab3',
-    loadChildren: () => import('./tab3/tab3.module').then( m => m.Tab3PageModule)
+    path: 'dcompras',
+    loadChildren: () => import('./pages/home/pages/dcompras/dcompras.module').then( m => m.DcomprasPageModule)
   },
+  {
+    path: 'ccompras',
+    loadChildren: () => import('./pages/home/pages/ccompras/ccompras.module').then( m => m.CcomprasPageModule)
+  }
   
 ];
 

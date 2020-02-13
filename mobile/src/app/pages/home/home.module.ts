@@ -4,8 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 
-import { TabsPageRoutingModule } from "./home-routing.module";
-
 import { HomePage } from './home.page';
 
 @NgModule({
@@ -13,7 +11,6 @@ import { HomePage } from './home.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    TabsPageRoutingModule,
     RouterModule.forChild([
       {
         path: '',

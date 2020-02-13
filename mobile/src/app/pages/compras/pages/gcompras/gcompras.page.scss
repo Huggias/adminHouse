@@ -1,0 +1,23 @@
+.cardVT{
+    margin: 0 auto;
+    height: 200px;
+    width: 200px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background-color: white;
+}
+.valorTotal{
+    // margin-left: 50px;
+    // margin-top: 70px;
+    margin: 40px auto;
+    // background-color: blue;
+    width: 150px;
+    height: 150px;
+    text-align: center;
+}
+.content{
+    height: 100%;
+    width: 100%;
+    background-color: #f4f4f4;
+}

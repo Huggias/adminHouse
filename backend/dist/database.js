@@ -16,7 +16,7 @@ function connect() {
             host: 'localhost',
             user: 'root',
             password: '',
-            database: 'proyeclepron',
+            database: 'adminHouse',
             connectionLimit: 10
         });
         return connect;

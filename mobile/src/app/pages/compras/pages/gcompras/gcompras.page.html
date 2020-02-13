@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Resumen de las compras</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="this.compras != undefined" class="content">
+
+    <div class="VTcontent">
+      <br>
+      <ion-card class="cardVT">
+        <ion-card-content>
+          <div class="valorTotal">
+            <h2>Gasto total</h2>
+            <span style="font-size: 3em;">{{costoTotal}}</span>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <ion-card style="background-color: white;" >
+      <ion-card-header>
+        <!-- <span style="text-align:center">Usuario 1</span> -->
+        <table style="width: 100%;">
+          <tr>
+            <td width="25%">Usuario</td>
+            <td width="25%" style="text-align: center;">Gasto</td>
+            <td width="25%" style="text-align: center;">Dar</td>
+            <td width="25%" style="text-align: center;">Recibir</td>
+          </tr>
+        </table>
+      </ion-card-header>
+    </ion-card>
+
+    <ion-card style="background-color: white;" *ngFor="let usuario of usuarios">
+      <ion-card-header>
+        <!-- <span style="text-align:center">Usuario 1</span> -->
+      </ion-card-header>
+      <ion-card-content>
+        <table style="width: 100%;">
+          <tr>
+            <td width="25%">{{usuario.name}}</td>
+            <td width="25%" style="text-align: center;">{{usuario.gasto}}</td>
+            <td width="25%" style="text-align: center;">{{usuario.dar}}</td>
+            <td width="25%" style="text-align: center;">{{usuario.recibir}}</td>
+          </tr>
+        </table>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+
+</ion-content>
