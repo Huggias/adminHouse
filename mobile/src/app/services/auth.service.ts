@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { iUser } from '../models/user.model';
 import { Router } from "@angular/router";
+import { URL_SERVER } from "../../URL_SERVER";
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private URL = "http://localhost:3000";
+  private URL = URL_SERVER;
 
   constructor(
     private http : HttpClient,

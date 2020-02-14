@@ -14,4 +14,7 @@ router.route('/signUp')
 router.route('/logIn')
     .post(signIn);
 
+router.route('/test')
+    .post( (req, res)=> {res.json("probando")} );
+
 export default router;
