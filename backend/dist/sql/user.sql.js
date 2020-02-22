@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = require("../database");
-class SqlCompras {
+class SqlUser {
     constructor() {
         this.connecToMysql();
     }
@@ -19,23 +19,30 @@ class SqlCompras {
             this.conn = yield database_1.connect();
         });
     }
-    createCompra(newCompra, idUsuario) {
+    getUsers() {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.conn.query("INSERT INTO `compras`(`idUsuario`, `precio`, `descripcion`) VALUES (?,?,?)", [idUsuario, newCompra.precio, newCompra.descripcion]);
+            const users = yield this.conn.query("SELECT * FROM `usuarios` ");
+            return users[0];
         });
     }
-    getCompras() {
+    getUser(userId) {
         return __awaiter(this, void 0, void 0, function* () {
-            const query = "SELECT c.*, u.username FROM compras c INNER JOIN usuarios u ON (c.idUsuario = u.id) ORDER BY `idCompra` DESC";
-            const compras = yield this.conn.query(query);
-            return compras[0];
+            const query = "SELECT * FROM `usuarios` WHERE `id` = " + userId;
+            const users = yield this.conn.query(query);
+            return users[0];
         });
     }
-    deleteCompra(idCompra) {
+    createUser(newUser) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.conn.query("DELETE FROM `compras` WHERE idCompra = ?", [idCompra]);
+            yield this.conn.query("INSERT INTO `usuarios`(`username`, `password`, `email`) VALUES (?,?,?)", [newUser.username, newUser.password, newUser.email]);
+        });
+    }
+    findUser(username, password) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const user = yield this.conn.query("SELECT * FROM `usuarios` WHERE username = ? AND password = ?", [username, password]);
+            return user[0];
         });
     }
 }
-const sqlCompra = new SqlCompras();
-exports.default = sqlCompra;
+const sqlUser = new SqlUser();
+exports.default = sqlUser;

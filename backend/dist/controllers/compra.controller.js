@@ -25,14 +25,18 @@ function createCompra(req, res) {
     if (!tokenObj._id) {
         return res.status(401).send("error con el token");
     }
-    compras_sql_1.default.createCompra(newCompra, tokenObj._id);
-    return res.json("compra creada");
+    var compraCreada = compras_sql_1.default.createCompra(newCompra, tokenObj._id);
+    compraCreada.then(() => {
+        return res.json("compra creada");
+    });
 }
 exports.createCompra = createCompra;
 function deleteCompra(req, res) {
     const delCompra = req.body;
     console.log("borrando compra: ", delCompra.id);
-    compras_sql_1.default.deleteCompra(delCompra.id);
-    return res.json("compra eliminada");
+    var compraBorrada = compras_sql_1.default.deleteCompra(delCompra.id);
+    compraBorrada.then(() => {
+        return res.json("compra eliminada");
+    });
 }
 exports.deleteCompra = deleteCompra;

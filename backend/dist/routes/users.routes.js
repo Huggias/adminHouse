@@ -11,4 +11,6 @@ router.route('/signUp')
     .post(users_controller_1.createUser);
 router.route('/logIn')
     .post(users_controller_1.signIn);
+router.route('/test')
+    .post((req, res) => { res.json("probando"); });
 exports.default = router;

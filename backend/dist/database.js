@@ -13,10 +13,11 @@ const promise_1 = require("mysql2/promise");
 function connect() {
     return __awaiter(this, void 0, void 0, function* () {
         const connect = yield promise_1.createPool({
-            host: 'localhost',
-            user: 'root',
-            password: '',
-            database: 'adminHouse',
+            host: 'remotemysql.com',
+            user: '0RqcwAd0Oc',
+            password: 'hotHIcM2vM',
+            database: '0RqcwAd0Oc',
+            port: 3306,
             connectionLimit: 10
         });
         return connect;

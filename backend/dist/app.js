@@ -13,6 +13,7 @@ const cors = require('cors');
 const index_routes_1 = __importDefault(require("./routes/index.routes"));
 const users_routes_1 = __importDefault(require("./routes/users.routes"));
 const compras_routes_1 = __importDefault(require("./routes/compras.routes"));
+const sigin_middlewares_1 = require("./middlewares/sigin.middlewares");
 // import Colors = require('colors.ts');
 class App {
     constructor(port) {
@@ -30,19 +31,20 @@ class App {
             socket.on("modCompras", () => {
                 const compras = compras_sql_1.default.getCompras();
                 compras.then(res => {
+                    console.log(res);
                     this.io.sockets.emit('modCompras', res);
                 });
             });
         });
     }
     settings() {
-        this.app.set('port', this.port || process.env.PORT || 3000);
+        this.app.set('port', process.env.PORT || 3000);
     }
     middlewares() {
         this.app.use(morgan_1.default('dev'));
         this.app.use(express_1.default.json());
         this.app.use(cors());
-        // this.app.all(/api/, verifyToken);
+        this.app.all(/api/, sigin_middlewares_1.verifyToken);
     }
     routes() {
         this.app.use(index_routes_1.default);

@@ -18,10 +18,6 @@ import ComprasRoutes from "./routes/compras.routes";
 import { verifyToken } from "./middlewares/sigin.middlewares";
 // import Colors = require('colors.ts');
 
-// import db from "./database";
-
-
-import queryCompras from "./querys/compras.querys";
 
 export class App {
 

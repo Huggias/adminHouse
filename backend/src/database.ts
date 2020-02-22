@@ -1,14 +1,3 @@
-// import admin from "firebase-admin";
-// const serviceAccount = require("../../backend/adminhouse-52343-firebase-adminsdk-8trbs-a5e09e7c7d.json");
-// admin.initializeApp({
-//     credential: admin.credential.cert(serviceAccount),
-//     databaseURL: "https://adminhouse-52343.firebaseio.com"
-// });
-// var db = admin.firestore();
-
-// export default db;
-
-
 import { createPool } from 'mysql2/promise';
 
 export async function connect(){
