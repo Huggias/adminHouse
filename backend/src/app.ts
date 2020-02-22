@@ -18,6 +18,10 @@ import ComprasRoutes from "./routes/compras.routes";
 import { verifyToken } from "./middlewares/sigin.middlewares";
 // import Colors = require('colors.ts');
 
+// import db from "./database";
+
+
+import queryCompras from "./querys/compras.querys";
 
 export class App {
 
@@ -39,6 +43,7 @@ export class App {
             socket.on("modCompras", () => {
                 const compras = sqlCompra.getCompras();
                 compras.then( res => {
+                    console.log(res);
                     this.io.sockets.emit('modCompras', res);
                 } )
             });

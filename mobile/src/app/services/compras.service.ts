@@ -33,6 +33,7 @@ export class ComprasService {
     const http = this.http.post<any>(URL_SERVER+'/api/deleteCompra', {id: idCompra});
     http.subscribe(
       res=>{
+        console.log("emitiendo que se borro una compra");
         this.socket.emit('modCompras'); 
       },
       err=>console.log(err)

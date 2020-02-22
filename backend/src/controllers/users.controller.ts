@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import  sqlUser  from "../sql/users.sql";
+import  sqlUser  from "../sql/user.sql"
 
 import { iUser, iNewUser, iReqUser } from "../interface/user.interface";
 

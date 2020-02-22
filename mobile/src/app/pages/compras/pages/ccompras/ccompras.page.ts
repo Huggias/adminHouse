@@ -7,7 +7,7 @@ import { ComprasService } from "../../../../services/compras.service";
 })
 export class CcomprasPage implements OnInit {
 
-  private newCompra : {precio : string, descripcion : string} = {precio : "", descripcion : ""};
+  public newCompra : {precio : string, descripcion : string} = {precio : "", descripcion : ""};
 
 
   constructor(

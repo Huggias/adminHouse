@@ -15,7 +15,7 @@ export  function getCompras(req:Request, res:Response):void{
 }
 
 // CREAR COMPRA
-export  function createCompra(req:Request, res:Response):Response{
+export  function createCompra(req:Request, res:Response):void | Response{
     const newCompra : iCompra = req.body;
     if (!req.headers.authorization) {
         return res.status(401).send("Necesitas estar logeado");
@@ -23,13 +23,17 @@ export  function createCompra(req:Request, res:Response):Response{
     const token = req.headers.authorization;
     const tokenObj : any | undefined =  jwt.verify(token, tokenKey);
     if(!tokenObj._id){ return res.status(401).send("error con el token")}
-    sqlCompra.createCompra(newCompra, tokenObj._id);
-    return res.json("compra creada");
+    var compraCreada = sqlCompra.createCompra(newCompra, tokenObj._id);
+    compraCreada.then( () =>{
+        return res.json("compra creada");
+    })
 }
 
 export function deleteCompra(req:Request, res:Response){
     const delCompra  = req.body;
     console.log("borrando compra: ", delCompra.id);
-    sqlCompra.deleteCompra(delCompra.id);
-    return res.json("compra eliminada");
+    var compraBorrada = sqlCompra.deleteCompra(delCompra.id);
+    compraBorrada.then( () => {
+        return res.json("compra eliminada");
+    })
 }

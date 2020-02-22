@@ -17,6 +17,8 @@
     "colors.ts": "^1.0.20",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "firebase-admin": "^8.9.2",
+    "firebase-functions": "^3.3.0",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.9.1",
     "mysql2": "^2.1.0",
