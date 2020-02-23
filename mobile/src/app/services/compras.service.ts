@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { URL_SERVER } from "../../URL_SERVER"
+import URL_SERVER from "../../URL_SERVER"
 import { Socket } from 'ngx-socket-io';
 @Injectable({
   providedIn: 'root'
