@@ -9,8 +9,9 @@ import { Socket } from 'ngx-socket-io';
 export class GcomprasPage implements OnInit {
 
 
-  private actComp = this.socket.on('modCompras', (data) => { this.compras = data; this.actualizacrCompras() });
-  compras : any[];
+  // private actComp = this.socket.on('modCompras', (data) => { this.compras = data; this.actualizacrCompras() });
+
+  compras : any;
   costoTotal : number = 0;
   usuarios : {gasto:number, dar: number, recibir: number, name: string}[] = [
     {gasto : 0, dar: 0, recibir : 0, name:"Thomy"},
@@ -23,6 +24,7 @@ export class GcomprasPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    // console.log("se creo el componente gCompras");
     this.compraService.getCompras().subscribe(
       res => {
         this.compras = res;
@@ -30,7 +32,21 @@ export class GcomprasPage implements OnInit {
       },
       err => console.log(err)
     )
+    this.getMessage();
 
+  }
+
+  getMessage() {
+    return this.socket
+        .fromEvent("modCompras")
+        .subscribe( 
+            res => { 
+              console.log(res) 
+              this.compras = res;
+              this.actualizacrCompras()
+            },
+            err => console.log(err)
+          )
   }
 
   actualizacrCompras(){

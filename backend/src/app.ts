@@ -34,12 +34,9 @@ export class App {
 
     sockets(){
         this.io.on('connection', (socket : any)=>{
-            console.log("usuario conectado: ", socket.id);
-
             socket.on("modCompras", () => {
                 const compras = sqlCompra.getCompras();
                 compras.then( res => {
-                    console.log(res);
                     this.io.sockets.emit('modCompras', res);
                 } )
             });

@@ -1,17 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { ComprasService } from "../../../../services/compras.service";
 import { Socket } from 'ngx-socket-io';
+import { Injectable } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-dcompras',
   templateUrl: './dcompras.page.html',
   styleUrls: ['./dcompras.page.scss'],
 })
+@Injectable()
 export class DcomprasPage implements OnInit {
 
     
-    private compras = this.socket.on('modCompras', (data) => { this.items = data });;
+    // private compras = this.socket.on('modCompras', (data) => { 
+    //   this.items = data; 
+    // });
+
     public items: any;
+
+
     constructor(
       private comprasService : ComprasService,
       private socket : Socket,
@@ -22,7 +29,27 @@ export class DcomprasPage implements OnInit {
 
     ngOnInit() {
       this.comprasService.emmitModCompras();
+      this.getMessage();
+      // console.log("por sokets 2");
+      // console.log(this.items);
+      this.comprasService.getCompras().subscribe(
+        res => { this.items = res; console.log("por http"); console.log(this.items) },
+        err => console.log(err)
+      )
     }
+
+    getMessage() {
+      return this.socket
+          .fromEvent("modCompras")
+          .subscribe( 
+              res => { 
+                console.log(res) 
+                this.items = res;
+              },
+              err => console.log(err)
+            )
+          
+  }
 
     borrarCompra(idCompra){
       this.comprasService.deleteCompra(idCompra);

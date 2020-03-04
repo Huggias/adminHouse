@@ -16,6 +16,9 @@ export class LoginPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    if (this.auth.loggedIn()) {
+      this.router.navigate(['/compras/gcompras']);
+    }
     // this.socket = io(URL_SERVER);
   }
 

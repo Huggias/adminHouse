@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, enableProdMode } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { AuthService } from "./services/auth.service";
+
 
 @Component({
   selector: 'app-root',
@@ -10,6 +12,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+  public logged : boolean = false;
   public appPages = [
     {
       title: 'Compras',
@@ -31,7 +34,8 @@ export class AppComponent {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private auth : AuthService
   ) {
     this.initializeApp();
   }
@@ -41,5 +45,15 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+    this.logged = this.auth.loggedIn();
+    console.log("logeado: ", this.logged);
   }
+
+  closeApp(){
+    console.log("cerrando aplicacion");
+    this.auth.logout();
+    navigator['app'].exitApp();
+    // this.platform.exitApp();
+  }
+
 }
