@@ -3,6 +3,7 @@ import { ComprasService } from "../../../../services/compras.service";
 import { Socket } from 'ngx-socket-io';
 import { Injectable } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+// import { Observable } from 'rxjs';
 @Component({
   selector: 'app-dcompras',
   templateUrl: './dcompras.page.html',
@@ -10,7 +11,6 @@ import { AlertController } from '@ionic/angular';
 })
 @Injectable()
 export class DcomprasPage implements OnInit {
-
     
     // private compras = this.socket.on('modCompras', (data) => { 
     //   this.items = data; 
@@ -34,6 +34,13 @@ export class DcomprasPage implements OnInit {
       // console.log(this.items);
       this.comprasService.getCompras().subscribe(
         res => { this.items = res; console.log("por http"); console.log(this.items) },
+        err => console.log(err)
+      )
+    }
+
+    refresh(){
+      this.comprasService.getCompras().subscribe(
+        res => { this.items = res; },
         err => console.log(err)
       )
     }
@@ -76,4 +83,27 @@ export class DcomprasPage implements OnInit {
       });
       await alert.present();
     }
+
+    async resetCompras(){
+        const alert = await this.alertController.create({
+            header: 'Se borraran todas las compras',
+            buttons: [
+              {
+                text: 'Cancelar',
+                role: 'cancel',
+                cssClass: 'secondary',
+                handler: () => {
+                  console.log('Borrar compra cancelada');
+                }
+              }, {
+                text: 'Aceptar',
+                handler: () => {
+                  this.comprasService.resetCompras();
+                }
+              }
+            ]
+      });
+      await alert.present();
+    }
+
   }

@@ -39,6 +39,10 @@ const routes: Routes = [
   {
     path: 'ccompras',
     loadChildren: () => import('./pages/home/pages/ccompras/ccompras.module').then( m => m.CcomprasPageModule)
+  },
+  {
+    path: 'tareas',
+    loadChildren: () => import('./pages/tareas/tareas.module').then( m => m.TareasPageModule)
   }
   
 ];

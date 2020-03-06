@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Tareas asignadas</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon (click)="refresh()" style="font-size: 1.5em; margin-right: 15px; cursor: pointer;" ios="ios-refresh" md="md-refresh"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="fondo">
+    <ion-card class="card" *ngFor="let tarea of tareas">
+      <ion-card-header>
+        <ion-card-title>{{tarea.nombre}}</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        {{tarea.descripcion}}
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+</ion-content>

@@ -18,6 +18,11 @@ export class AppComponent {
       title: 'Compras',
       url: '/compras/gcompras',
       icon: 'list'
+    },
+    {
+      title: 'Tareas de limpieza',
+      url: '/tareas/gtareas',
+      icon: 'list'
     }
     // {
     //   title: 'Home',

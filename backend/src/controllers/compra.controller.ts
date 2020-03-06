@@ -37,3 +37,12 @@ export function deleteCompra(req:Request, res:Response){
         return res.json("compra eliminada");
     })
 }
+
+export function resetCompras(req:Request, res:Response){
+    // const delCompra  = req.body;
+    // console.log("borrando compra: ", delCompra.id);
+    var compraBorrada = sqlCompra.resetCompras();
+    compraBorrada.then( () => {
+        return res.json("compra eliminada");
+    })
+}

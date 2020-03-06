@@ -22,6 +22,9 @@ class SqlCompras{
     public async deleteCompra(idCompra: {id : number}):Promise<void>{
         await this.conn.query("DELETE FROM `compras` WHERE idCompra = ?", [idCompra]);
     }
+    public async resetCompras():Promise<void>{
+        await this.conn.query("DELETE FROM `compras`");
+    }
 }
 
 const sqlCompra = new SqlCompras();

@@ -13,6 +13,7 @@ const cors = require('cors')
 
 import IndexRoutes from './routes/index.routes';
 import UsersRoutes from './routes/users.routes';
+import tareasRoutes from './routes/tareas.routes';
 import ComprasRoutes from "./routes/compras.routes";
 
 import { verifyToken } from "./middlewares/sigin.middlewares";
@@ -38,7 +39,7 @@ export class App {
                 const compras = sqlCompra.getCompras();
                 compras.then( res => {
                     this.io.sockets.emit('modCompras', res);
-                } )
+                })
             });
         })
     }
@@ -52,17 +53,26 @@ export class App {
         this.app.use(express.json());
         this.app.use(cors());
         this.app.all(/api/, verifyToken);
+
+        this.io.use((socket:any, next:any) => {
+            console.log("en middleware de io");
+            console.log(socket.request.headers)
+            next()
+                // if (socket.request.headers.cookie) return next();
+                // next(new Error('Authentication error'));
+        });
     }
 
     routes() { 
         this.app.use(IndexRoutes);
         this.app.use('/log',UsersRoutes);
         this.app.use('/api',ComprasRoutes);
+        this.app.use('/api',tareasRoutes);
     }
 
     listen(){
         const server = this.app.listen(this.app.get('port'));
-        this.io = socketIo(server);
+        this.io = socketIo(server, {origins: '*:*'});
         console.log("Server on port: "+this.app.get('port'));
     }
 

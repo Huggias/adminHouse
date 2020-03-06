@@ -36,6 +36,16 @@ export class GcomprasPage implements OnInit {
 
   }
 
+  refresh(){
+    this.compraService.getCompras().subscribe(
+      res => {
+        this.compras = res;
+        this.actualizacrCompras();
+      },
+      err => console.log(err)
+    )
+  }
+
   getMessage() {
     return this.socket
         .fromEvent("modCompras")

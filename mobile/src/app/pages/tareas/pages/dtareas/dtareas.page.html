@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Todas las tareas</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon (click)="refresh()" style="font-size: 1.5em; margin-right: 15px; cursor: pointer;" ios="ios-refresh" md="md-refresh"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="fondo">
+    
+  </div>
+  <ion-button color="success" expand="block" id="resetTareas" (click)="resetTareas()">Reasignar las tareas</ion-button>
+  <ion-card class="card" *ngFor="let tarea of tareas">
+    <ion-card-header>
+      <table style="width: 100%;">
+        <tr>
+          <td width="80%"><ion-card-title>{{tarea.nombre}}</ion-card-title></td>
+          <td width="20%" style="text-align: right; font-size: 1.5em;"><ion-icon style="cursor: pointer" ios="ios-trash" md="md-trash" (click)="borrarTarea(tarea.idTarea)"></ion-icon></td>
+        </tr>
+      </table>
+      
+    </ion-card-header>
+  
+    <ion-card-content>
+      {{tarea.descripcion}}
+    </ion-card-content>
+  </ion-card>
+</ion-content>
