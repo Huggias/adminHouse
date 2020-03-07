@@ -43,6 +43,14 @@ const routes: Routes = [
   {
     path: 'tareas',
     loadChildren: () => import('./pages/tareas/tareas.module').then( m => m.TareasPageModule)
+  },
+  {
+    path: 'lista-compras',
+    loadChildren: () => import('./pages/lista-compras/lista-compras.module').then( m => m.ListaComprasPageModule)
+  },
+  {
+    path: 'lista-compras',
+    loadChildren: () => import('./pages/lista-compras/lista-compras.module').then( m => m.ListaComprasPageModule)
   }
   
 ];

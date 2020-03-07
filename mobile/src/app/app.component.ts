@@ -23,6 +23,11 @@ export class AppComponent {
       title: 'Tareas de limpieza',
       url: '/tareas/gtareas',
       icon: 'list'
+    },
+    {
+      title: 'Lista de compras',
+      url: '/listaCompras/glistaCompras',
+      icon: 'list'
     }
     // {
     //   title: 'Home',

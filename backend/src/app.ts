@@ -15,6 +15,7 @@ import IndexRoutes from './routes/index.routes';
 import UsersRoutes from './routes/users.routes';
 import tareasRoutes from './routes/tareas.routes';
 import ComprasRoutes from "./routes/compras.routes";
+import ListaComprasRoutes from "./routes/listaCompras.routes";
 
 import { verifyToken } from "./middlewares/sigin.middlewares";
 // import Colors = require('colors.ts');
@@ -68,6 +69,7 @@ export class App {
         this.app.use('/log',UsersRoutes);
         this.app.use('/api',ComprasRoutes);
         this.app.use('/api',tareasRoutes);
+        this.app.use('/api',ListaComprasRoutes);
     }
 
     listen(){
