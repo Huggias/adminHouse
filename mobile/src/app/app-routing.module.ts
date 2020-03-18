@@ -47,10 +47,6 @@ const routes: Routes = [
   {
     path: 'lista-compras',
     loadChildren: () => import('./pages/lista-compras/lista-compras.module').then( m => m.ListaComprasPageModule)
-  },
-  {
-    path: 'lista-compras',
-    loadChildren: () => import('./pages/lista-compras/lista-compras.module').then( m => m.ListaComprasPageModule)
   }
   
 ];
