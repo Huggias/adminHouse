@@ -13,7 +13,7 @@ export class GlistaComprasPage implements OnInit {
     private alertController : AlertController
   ){}
 
-  private obtenerListaCompras(){
+  public obtenerListaCompras(){
     this.service.getListaCompras().subscribe(
         res => {this.lista = res; console.log(res)},
         err => console.log(err)
