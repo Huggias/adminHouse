@@ -54,7 +54,7 @@ export class App {
         this.app.use(morgan('dev'));
         this.app.use(express.json());
         this.app.use(cors());
-        // this.app.all(/api/, verifyToken);
+        this.app.all(/api/, verifyToken);
 
         // this.io.use((socket:any, next:any) => {
         //     console.log("en middleware de io");
