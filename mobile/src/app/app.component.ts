@@ -29,11 +29,11 @@ export class AppComponent {
        url: '/movimientos/gmovimientos',
        icon: 'list'
     }
-    // ,{
-    //   title: 'Lista de compras',
-    //   url: '/lista-compras/glista-compras',
-    //   icon: 'list'
-    // }
+    ,{
+      title: 'Lista de compras',
+      url: '/lista-compras/glista-compras',
+      icon: 'list'
+    }
     // {
     //   title: 'Home',
     //   url: '/home',

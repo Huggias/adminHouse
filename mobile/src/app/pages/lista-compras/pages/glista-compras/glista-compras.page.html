@@ -4,9 +4,33 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Lista de compras</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon (click)="obtenerListaCompras()" style="font-size: 1.5em; margin-right: 15px; cursor: pointer;" ios="ios-refresh" md="md-refresh"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-list>
+    <ion-item *ngFor="let item of lista">
+      <ion-label>
+        <table>
+          <tr>
+            <td rowspan="2" width="20%">
+                X {{item.cantidad}}
+            </td>
+            <td width="60%">
+              <h2>{{item.nombre}}</h2>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>{{item.descripcion}}</p>
+            </td>
+          </tr>
+        </table>
+      </ion-label>
+      <ion-icon style="cursor: pointer" ios="ios-trash" md="md-trash" (click)="deleteCompra(item.idCompra)"></ion-icon>
+    </ion-item>
+  </ion-list>
 </ion-content>

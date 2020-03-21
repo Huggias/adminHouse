@@ -12,15 +12,15 @@ class SqlCompras{
         this.conn = await connect();
     }
     public async createCompra(newCompra : any): Promise<void> {
-        await this.conn.query("INSERT INTO `listaCompras`(`nombre`, `descripcion`, `cantidad`) VALUES (?,?,?)",[newCompra.nombre, newCompra.descripcion,newCompra.cantidad ]);
+        await this.conn.query("INSERT INTO `listacompras`(`nombre`, `descripcion`, `cantidad`) VALUES (?,?,?)",[newCompra.nombre, newCompra.descripcion,newCompra.cantidad ]);
     }
     public async getCompras(): Promise<void> {
-        const query : string = "SELECT * FROM `listaCompras`";
+        const query : string = "SELECT * FROM `listacompras`";
         const compras = await this.conn.query(query);
         return compras[0];        
     }
     public async deleteCompra(idCompra: any):Promise<void>{
-        await this.conn.query("DELETE FROM `listaCompras` WHERE idCompra = ?", [idCompra]);
+        await this.conn.query("DELETE FROM `listacompras` WHERE idCompra = ?", [idCompra]);
     }
 }
 

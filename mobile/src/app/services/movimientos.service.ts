@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Router } from "@angular/router";
 import URL_SERVER from "../../URL_SERVER";
 @Injectable({
   providedIn: 'root'
@@ -9,7 +8,6 @@ export class MovimientosService{
 
   constructor(
     private http : HttpClient,
-    private router : Router
   ) { 
 
    }
