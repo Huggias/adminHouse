@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Cargar nuevo movimiento</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #form="ngForm">
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div padding>
+            <ion-item>
+              <ion-label position="floating">monto</ion-label>
+              <ion-input [(ngModel)]="newMovimiento.monto" name="monto" type="text" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Descripcion</ion-label>
+              <ion-input [(ngModel)]="newMovimiento.descripcion" name="descripcion" type="text"></ion-input>
+            </ion-item>
+            <!-- <ion-item>
+              <ion-label position="floating">Tipo</ion-label>
+              <ion-input [(ngModel)]="newMovimiento.tipo" name="tipo" type="text"></ion-input>
+            </ion-item> -->
+            <ion-item>
+              <ion-label>Tipo</ion-label>
+              <ion-select required value="tipo" interface="action-sheet" name="tipo" [(ngModel)]="newMovimiento.tipo">
+                <ion-select-option value="Egreso">Egreso</ion-select-option>
+                <ion-select-option value="Ingreso">Ingreso</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </div>
+          <div padding>
+            <ion-button size="large" type="submit" [disabled]="form.invalid" expand="block" (click)="addMovimiento()">Agregar compra</ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

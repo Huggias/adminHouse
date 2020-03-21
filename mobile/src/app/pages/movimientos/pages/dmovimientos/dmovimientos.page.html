@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Detalle de los movimientos</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon (click)="refresh()" style="font-size: 1.5em; margin-right: 15px; cursor: pointer;" ios="ios-refresh" md="md-refresh"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div style="width: 100%; height: 100%; background-color: #f4f4f4;">
+      <ion-list style="background-color: #f4f4f4;">
+        <ion-card  style="background-color: white;" *ngFor="let mov of movimientos" (click)="deleteMovimiento(mov.idMovimiento)">
+          <!-- <div> -->
+            <ion-card-header>
+              <table style="width: 100%;">
+                <tr>
+                  <td colspan="2" width="50%" text-left style="font-weight: bold;"
+                  >{{mov.tipo}}</td>
+                  <td width="50%" style="text-align: right; font-size: 1em;">{{mov.monto}} $</td>
+  
+                </tr>
+              </table>
+            </ion-card-header>
+      
+            <ion-card-content>
+              <table style="width: 100%;">
+                <tr>
+                  <td width="50%" text-left>{{mov.descripcion}}</td>
+                  <td width="50%" style="text-align: right; font-size: 1em;">{{mov.fecha}}</td>
+                </tr>
+              </table>
+            </ion-card-content>
+          </ion-card>
+        <!-- </div> -->
+      </ion-list>
+    </div>
+
+
+</ion-content>

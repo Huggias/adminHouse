@@ -24,6 +24,11 @@ export class AppComponent {
       url: '/tareas/gtareas',
       icon: 'list'
     }
+    ,{
+       title: 'Cuenta',
+       url: '/movimientos/gmovimientos',
+       icon: 'list'
+    }
     // ,{
     //   title: 'Lista de compras',
     //   url: '/lista-compras/glista-compras',

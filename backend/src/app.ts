@@ -16,6 +16,7 @@ import UsersRoutes from './routes/users.routes';
 import tareasRoutes from './routes/tareas.routes';
 import ComprasRoutes from "./routes/compras.routes";
 import ListaComprasRoutes from "./routes/listaCompras.routes";
+import MovimientosRoutes from "./routes/movimientos.routes";
 
 import { verifyToken } from "./middlewares/sigin.middlewares";
 // import Colors = require('colors.ts');
@@ -53,15 +54,15 @@ export class App {
         this.app.use(morgan('dev'));
         this.app.use(express.json());
         this.app.use(cors());
-        this.app.all(/api/, verifyToken);
+        // this.app.all(/api/, verifyToken);
 
-        this.io.use((socket:any, next:any) => {
-            console.log("en middleware de io");
-            console.log(socket.request.headers)
-            next()
-                // if (socket.request.headers.cookie) return next();
-                // next(new Error('Authentication error'));
-        });
+        // this.io.use((socket:any, next:any) => {
+        //     console.log("en middleware de io");
+        //     console.log(socket.request.headers)
+        //     next()
+        //         // if (socket.request.headers.cookie) return next();
+        //         // next(new Error('Authentication error'));
+        // });
     }
 
     routes() { 
@@ -70,6 +71,7 @@ export class App {
         this.app.use('/api',ComprasRoutes);
         this.app.use('/api',tareasRoutes);
         this.app.use('/api',ListaComprasRoutes);
+        this.app.use('/api',MovimientosRoutes);   
     }
 
     listen(){

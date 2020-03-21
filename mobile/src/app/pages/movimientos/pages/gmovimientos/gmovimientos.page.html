@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Saldo total</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon (click)="refresh()" style="font-size: 1.5em; margin-right: 15px; cursor: pointer;" ios="ios-refresh" md="md-refresh"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="content">
+    <div class="VTcontent">
+      <br>
+      <ion-card class="cardVT">
+        <ion-card-content>
+          <div class="valorTotal">
+            <!-- <h2>Saldo</h2> -->
+            <span style="font-size: 3em;">{{saldoTotal}}</span>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <ion-text color="secondary">
+      <h1 text-center>Ultimos movimientos</h1>
+    </ion-text>
+
+    <ion-card style="background-color: white;" *ngFor="let mov of movimientos">
+      <ion-card-header>
+        <table style="width: 100%;">
+          <tr>
+            <td colspan="2" width="50%" text-left style="font-weight: bold;"
+            >{{mov.tipo}}</td>
+            <td width="50%" style="text-align: right; font-size: 1em;">{{mov.monto}} $</td>
+
+          </tr>
+        </table>
+      </ion-card-header>
+
+      <ion-card-content>
+        <table style="width: 100%;">
+          <tr>
+            <td width="50%" text-left>{{mov.descripcion}}</td>
+            <td width="50%" style="text-align: right; font-size: 1em;">{{mov.fecha}}</td>
+          </tr>
+        </table>
+      </ion-card-content>
+    </ion-card>
+
+    </div>
+
+</ion-content>
