@@ -18,27 +18,11 @@ export class ComprasService {
   }
 
   public createCompra(nuevaCompra : any){
-    const http:Observable<any> = this.http.post(URL_SERVER+'/api/createCompra', nuevaCompra);
-    http.subscribe(
-      res => { 
-        this.socket.emit('modCompras'); 
-        return res;
-      },
-      err => console.log(err)
-    )
-    return http;
+    return this.http.post(URL_SERVER+'/api/createCompra', nuevaCompra);
   }
 
   public deleteCompra(idCompra){
-    const http:Observable<any> = this.http.post(URL_SERVER+'/api/deleteCompra', {id: idCompra});
-    http.subscribe(
-      res=>{
-        console.log("emitiendo que se borro una compra");
-        this.socket.emit('modCompras'); 
-        return res;
-      },
-      err=>console.log(err)
-    )
+    return this.http.post(URL_SERVER+'/api/deleteCompra', {id: idCompra});
   }
 
   public resetCompras(){

@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-icon (click)="back()" ios="ios-arrow-back" md="md-arrow-back" style="margin-left:7px; font-size: 1.5em;"></ion-icon>
+    </ion-buttons>
+    <ion-title>Detalles del menu</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon (click)="refresh()" style="font-size: 1.5em; margin-right: 15px; cursor: pointer;" ios="ios-refresh" md="md-refresh"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="menu != undefined" style="width: 100%; height: 100%; background-color: #f4f4f4;">
+    <img style="margin-bottom:0" height="40%" width="100%" src="{{menu.img}}" (click)="editImg()" />
+    <ion-list style="background-color: #f4f4f4;">
+      <ion-card style="background-color: white;">
+        <ion-card-header>
+          <ion-card-subtitle>TITULO</ion-card-subtitle>
+          <ion-card-title>
+            <ion-input [(ngModel)]="menu.nombre" name="nombre" type="text"></ion-input>
+  
+          </ion-card-title>
+        </ion-card-header>
+      </ion-card>
+  
+      <ion-card style="background-color: white;">
+        <ion-card-header>
+          <ion-card-subtitle>DESCRIPCION</ion-card-subtitle>
+          <ion-card-title>
+            <ion-textarea  [(ngModel)]="menu.descripcion" name="descripcion" type="text"></ion-textarea >
+          </ion-card-title>
+        </ion-card-header>
+      </ion-card>
+  
+      <ion-card style="background-color: white;">
+        <ion-card-header>
+          <ion-card-subtitle>INGREDIENTES</ion-card-subtitle>
+          <ul>
+            <li *ngFor="let ingrediente of menu.ingredientes" (click)="editIngrediente(ingrediente)" style="margin-bottom: 5px; padding:10px">
+              <ion-card-title>
+                {{ingrediente.cantidad}} 
+                {{ingrediente.cuantificador}} 
+                de 
+                {{ ingrediente.nombre}}
+              </ion-card-title>
+            </li>
+          </ul>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-button size="large" type="button" expand="block" (click)="addIngrediente()">Agregar ingrediente</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+  </div>
+</ion-content>

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { TareasService } from "../../../../services/tareas.service";
 import { Socket } from 'ngx-socket-io';
 import { AlertController } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
+
 @Component({
   selector: 'app-dtareas',
   templateUrl: './dtareas.page.html',
@@ -12,24 +15,39 @@ export class DtareasPage implements OnInit {
   constructor(
     private tareasService : TareasService,
     private socket : Socket,
-    private alertController: AlertController
+    private alertController: AlertController,
+    public loadingController: LoadingController,
+    public toastController: ToastController
+
   ) { }
 
   ngOnInit() {
-    this.tareasService.getTareas().subscribe(
-      res => {
-        console.log(res)
-        this.tareas = res;
-      },
-      err => console.log(err)
-    )
+    this.refresh();
   }
-
-  refresh(){
+  async presentToast(mess?) {
+    var message = 'Se reasignaron las tareas';
+    var color = "success";
+    if (mess != undefined) {
+      message = mess;
+      color = "danger";
+    }
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      color : color
+    });
+    toast.present();
+  }
+  async refresh(){
+    const loading = await this.loadingController.create({
+      message: 'Cargando...'
+    });
+    loading.present();
     this.tareasService.getTareas().subscribe(
       res => {
-        console.log(res)
         this.tareas = res;
+        loading.dismiss();
+
       },
       err => console.log(err)
     )
@@ -48,8 +66,18 @@ export class DtareasPage implements OnInit {
             }
           }, {
             text: 'Aceptar',
-            handler: () => {
-              this.tareasService.resetTareas().subscribe();
+            handler: async () => {
+              const loading = await this.loadingController.create({
+                message: 'Cargando...'
+              });
+              loading.present();
+              this.tareasService.resetTareas().subscribe(
+                res => {
+                  console.log(res);
+                  loading.dismiss();
+                  this.presentToast();
+                }
+              );
             }
           }
         ]
@@ -71,8 +99,17 @@ async borrarTarea(idTarea){
         }
       }, {
         text: 'Borrar',
-        handler: () => {
-          this.tareasService.borrarTarea(idTarea).subscribe();
+        handler: async () => {
+          const loading = await this.loadingController.create({
+            message: 'Cargando...'
+          });
+          loading.present();
+          this.tareasService.borrarTarea(idTarea).subscribe(
+            res =>{
+              loading.dismiss();
+              this.refresh();
+            }
+          );
         }
       }
     ]

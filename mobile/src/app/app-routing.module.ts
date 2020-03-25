@@ -29,18 +29,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/compras/compras.module').then( m => m.ComprasPageModule)
   },
   {
-    path: 'gcompras',
-    loadChildren: () => import('./pages/home/pages/gcompras/gcompras.module').then( m => m.GcomprasPageModule)
-  },
-  {
-    path: 'dcompras',
-    loadChildren: () => import('./pages/home/pages/dcompras/dcompras.module').then( m => m.DcomprasPageModule)
-  },
-  {
-    path: 'ccompras',
-    loadChildren: () => import('./pages/home/pages/ccompras/ccompras.module').then( m => m.CcomprasPageModule)
-  },
-  {
     path: 'tareas',
     loadChildren: () => import('./pages/tareas/tareas.module').then( m => m.TareasPageModule)
   },
@@ -51,6 +39,42 @@ const routes: Routes = [
   {
     path: 'movimientos',
     loadChildren: () => import('./pages/movimientos/movimientos.module').then( m => m.MovimientosPageModule)
+  },
+  {
+    path: 'comidas',
+    loadChildren: () => import('./pages/comidas/comidas.module').then( m => m.ComidasPageModule)
+  },
+  {
+    path: 'dcomidas',
+    loadChildren: () => import('./pages/comidas/pages/dcomidas/dcomidas.module').then( m => m.DcomidasPageModule)
+  },
+  {
+    path: 'menudetail/:idMenu',
+    loadChildren: () => import('./pages/comidas/pages/menudetail/menudetail.module').then( m => m.MenudetailPageModule)
+  },
+  {
+    path: 'menus',
+    loadChildren: () => import('./pages/comidas/pages/dmenu/dmenu.module').then( m => m.DmenuPageModule)
+  },
+  {
+    path: 'exit',
+    loadChildren: () => import('./pages/exit/exit.module').then( m => m.ExitPageModule)
+  },
+  {
+    path: 'editDia',
+    loadChildren: () => import('./pages/comidas/pages/editdia/editdia.module').then( m => m.EditdiaPageModule)
+  },
+  {
+    path: 'editDia/:dia',
+    loadChildren: () => import('./pages/comidas/pages/editdia/editdia.module').then( m => m.EditdiaPageModule)
+  },
+  {
+    path: 'editDia/mediodia/:dia',
+    loadChildren: () => import('./pages/comidas/pages/editdia/pages/mediodia/mediodia.module').then( m => m.MediodiaPageModule)
+  },
+  {
+    path: 'editDia/noche/:dia',
+    loadChildren: () => import('./pages/comidas/pages/editdia/pages/noche/noche.module').then( m => m.NochePageModule)
   }
   
 ];

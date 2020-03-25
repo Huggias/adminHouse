@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Cargar nuevo menu</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #form="ngForm">
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div padding>
+            <ion-list>
+              <ion-list-header>
+                <ion-title>Datos del menu</ion-title>
+              </ion-list-header>
+              <ion-item>
+                <ion-label position="floating">Nombre</ion-label>
+                <ion-input [(ngModel)]="menu.nombre" name="nombre" type="text" required></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Descripcion</ion-label>
+                <ion-input [(ngModel)]="menu.descripcion" name="descripcion" type="text"></ion-input>
+              </ion-item>
+            </ion-list>
+            <ion-list>
+              <ion-list-header>
+                <ion-title>
+                  <table>
+                    <tr>
+                      <td width="30%">
+                        Ingredientes
+                      </td>
+                      <td width="70%"> 
+                        <ion-button size="small" color="success" type="button" expand="block" (click)="addIngrediente()">Agregar</ion-button>
+                      </td>
+                    </tr>
+                  </table>
+
+
+                </ion-title>
+              </ion-list-header>
+      
+              <ion-item *ngFor="let ingrediente of ingredientes">
+                    <ion-label>
+                      <h3>
+                        {{ingrediente.cantidad}}
+                        {{ingrediente.cuantificador}}
+                        de
+                        {{ingrediente.nombre}}
+                      </h3>
+                    </ion-label>
+                    <ion-icon slot="end" ios="ios-trash" md="md-trash" (click)="deleteIngrediente(ingrediente.id)"></ion-icon>
+              </ion-item>
+            </ion-list>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <div padding style="top:85%;  position:fixed; width:100%; background-color: white;">
+      <ion-button size="large" type="submit" [disabled]="form.invalid" expand="block" (click)="addMenu()">Guardar menu</ion-button>
+    </div>
+  </form>
+</ion-content>

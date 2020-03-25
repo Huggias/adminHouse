@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { setActive } from "../../setMenuActive";
 @Component({
   selector: 'app-movimientos',
   templateUrl: './movimientos.page.html',
@@ -10,6 +10,7 @@ export class MovimientosPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    setActive("Cuenta");
   }
 
 }

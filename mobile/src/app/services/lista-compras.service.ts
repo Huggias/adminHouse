@@ -23,10 +23,6 @@ export class ListaComprasService {
   }
   public deleteCompra(idCompra){
     const http = this.http.delete(URL_SERVER+'/api/deleteListaCompras/'+idCompra);
-    http.subscribe(
-      res => console.log(res),
-      err => console.log(err)
-    )
     return http;
   }
   

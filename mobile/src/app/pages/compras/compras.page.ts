@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { setActive } from "../../setMenuActive";
 @Component({
   selector: 'app-compras',
   templateUrl: './compras.page.html',
@@ -10,6 +10,7 @@ export class ComprasPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    setActive("Compras");
   }
 
 }

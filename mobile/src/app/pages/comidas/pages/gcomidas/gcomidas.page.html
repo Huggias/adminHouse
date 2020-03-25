@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Menu de hoy</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon (click)="refresh()" style="font-size: 1.5em; margin-right: 15px; cursor: pointer;" ios="ios-refresh" md="md-refresh"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="width: 100%; height: 100%; background-color: #f4f4f4;">
+    <ion-list *ngIf="menu != undefined" style="background-color: #f4f4f4;">
+      <ion-card style="background-color: white;">
+        <img src="https://cdn.cienradios.com/wp-content/uploads/sites/13/2015/04/milanesas-de-carne-con-pureWEB.jpg" />
+        <ion-card-header>
+          <ion-card-subtitle>{{dia}} - {{horario}}</ion-card-subtitle>
+
+          <ion-card-title>{{menu.nombre}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          Ingredientes
+          <ul>
+            <li *ngFor="let ingrediente of menu.ingredientes"> {{ingrediente.cantidad}} {{ingrediente.cuantificador}} de {{ ingrediente.nombre}} </li>
+          </ul>
+          Organizacion
+          <ul>
+            <li>Cocina: {{menu.cocina}}</li>
+            <li>Verificacion: {{menu.verificacion}}</li>
+            <li>Preparacion: {{menu.preparacion}}</li>
+          </ul>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+  </div>
+</ion-content>

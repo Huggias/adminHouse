@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="tertiary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -14,18 +14,18 @@
   <ion-list>
     <ion-item *ngFor="let item of lista">
       <ion-label>
-        <table width="80%">
+        <table width="100%">
           <tr>
             <td rowspan="2" width="20%">
                 X {{item.cantidad}}
             </td>
             <td width="60%">
-              <h2>{{item.nombre}}</h2>
+              <h2 style="font-weight: bold;">{{item.nombre}}</h2>
             </td>
           </tr>
           <tr>
             <td>
-              <p>{{item.descripcion}}</p>
+              <p style="color: grey;">{{item.descripcion}}</p>      
             </td>
           </tr>
         </table>

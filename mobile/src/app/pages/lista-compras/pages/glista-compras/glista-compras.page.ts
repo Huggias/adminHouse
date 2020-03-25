@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ListaComprasService } from "../../../../services/lista-compras.service";
 import { AlertController } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular';
 @Component({
   selector: 'app-glista-compras',
   templateUrl: './glista-compras.page.html',
@@ -10,12 +11,20 @@ export class GlistaComprasPage implements OnInit {
   public lista;
   constructor(
     private service : ListaComprasService,
-    private alertController : AlertController
+    private alertController : AlertController,
+    public loadingController: LoadingController
   ){}
 
-  public obtenerListaCompras(){
+  public async obtenerListaCompras(){
+    const loading = await this.loadingController.create({
+      message: 'Cargando...'
+    });
+    loading.present();
     this.service.getListaCompras().subscribe(
-        res => {this.lista = res; console.log(res)},
+        res => {
+          this.lista = res; 
+          loading.dismiss();
+        },
         err => console.log(err)
     )
   }
@@ -32,9 +41,18 @@ export class GlistaComprasPage implements OnInit {
           }
         }, {
           text: 'Borrar',
-          handler: () => {
-            this.service.deleteCompra(idCompra);
-            this.obtenerListaCompras();
+          handler: async () => {
+            const loading = await this.loadingController.create({
+              message: 'Cargando...'
+            });
+            loading.present();
+            const http = this.service.deleteCompra(idCompra);
+            http.subscribe(
+              res=>{
+                this.obtenerListaCompras();
+                loading.dismiss();
+              }
+            )
           }
         }
       ]

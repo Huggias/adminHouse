@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ComprasService } from "../../../../services/compras.service";
 import { Socket } from 'ngx-socket-io';
+import { LoadingController } from '@ionic/angular';
+
 @Component({
   selector: 'app-gcompras',
   templateUrl: './gcompras.page.html',
@@ -10,7 +12,7 @@ export class GcomprasPage implements OnInit {
 
 
   // private actComp = this.socket.on('modCompras', (data) => { this.compras = data; this.actualizacrCompras() });
-
+  loading:any;
   compras : any;
   costoTotal : number = 0;
   usuarios : {gasto:number, dar: number, recibir: number, name: string}[] = [
@@ -20,27 +22,33 @@ export class GcomprasPage implements OnInit {
   ];
   constructor(
     private compraService : ComprasService,
-    private socket : Socket
+    private socket : Socket,
+    public loadingController: LoadingController
   ) { }
 
   ngOnInit() {
+    this.refresh();
     // console.log("se creo el componente gCompras");
-    this.compraService.getCompras().subscribe(
-      res => {
-        this.compras = res;
-        this.actualizacrCompras();
-      },
-      err => console.log(err)
-    )
-    this.getMessage();
+    // this.compraService.getCompras().subscribe(
+    //   res => {
+    //     this.compras = res;
+    //     this.actualizacrCompras();
+    //   },
+    //   err => console.log(err)
+    // )
+    // this.getMessage();
 
   }
-
-  refresh(){
+  async refresh(){
+    this.loading = await this.loadingController.create({
+      message: 'Cargando...'
+    });
+    this.loading.present();
     this.compraService.getCompras().subscribe(
       res => {
         this.compras = res;
         this.actualizacrCompras();
+        this.loading.dismiss();
       },
       err => console.log(err)
     )

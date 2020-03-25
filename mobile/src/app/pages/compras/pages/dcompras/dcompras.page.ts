@@ -3,6 +3,10 @@ import { ComprasService } from "../../../../services/compras.service";
 import { Socket } from 'ngx-socket-io';
 import { Injectable } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
+import { AuthService } from "../../../../services/auth.service";
+
 // import { Observable } from 'rxjs';
 @Component({
   selector: 'app-dcompras',
@@ -17,34 +21,60 @@ export class DcomprasPage implements OnInit {
     // });
 
     public items: any;
-
+    public miId;
 
     constructor(
       private comprasService : ComprasService,
       private socket : Socket,
-      private alertController: AlertController
+      private alertController: AlertController,
+      public loadingController: LoadingController,
+      public toastController : ToastController,
+      private auth : AuthService
     ) {
       
     }
 
     ngOnInit() {
+      this.auth.getId().subscribe(
+        res =>{
+          this.miId = res;
+          console.log(this.miId.id)
+        }
+      )
       this.comprasService.emmitModCompras();
       this.getMessage();
       // console.log("por sokets 2");
       // console.log(this.items);
+      this.refresh();
+    }
+
+    async refresh(){
+      const loading = await this.loadingController.create({
+        message: 'Cargando...'
+      });
+      loading.present();
       this.comprasService.getCompras().subscribe(
-        res => { this.items = res; console.log("por http"); console.log(this.items) },
+        res => { 
+          this.items = res;
+          loading.dismiss();
+        },
         err => console.log(err)
       )
     }
-
-    refresh(){
-      this.comprasService.getCompras().subscribe(
-        res => { this.items = res; },
-        err => console.log(err)
-      )
+    async presentToast(mess?) {
+      var message = 'Se guardaron los datos';
+      var color = "success";
+      if (mess != undefined) {
+        message = mess;
+        color = "danger";
+      }
+      const toast = await this.toastController.create({
+        message: message,
+        duration: 2000,
+        color : color
+      });
+      toast.present();
     }
-
     getMessage() {
       return this.socket
           .fromEvent("modCompras")
@@ -58,8 +88,18 @@ export class DcomprasPage implements OnInit {
           
   }
 
-    borrarCompra(idCompra){
-      this.comprasService.deleteCompra(idCompra);
+    async borrarCompra(idCompra){
+      const loading = await this.loadingController.create({
+        message: 'Cargando...'
+      });
+      loading.present();
+      this.comprasService.deleteCompra(idCompra).subscribe(
+        res => {
+            loading.dismiss();
+            this.presentToast();
+            this.refresh();
+        }
+      );
     }
 
     async handleButtonClick(idCompra) {

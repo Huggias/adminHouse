@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="tertiary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -10,6 +10,23 @@
 </ion-header>
 
 <ion-content>
+  <div style="width: 100%; height: 100%; background-color: #f4f4f4;">
+    <ion-list style="background-color: #f4f4f4;">
+      
+        <ion-card *ngFor="let item of listItems" style="background-color: white;" (click)="go(item.url)">
+  
+          <ion-item>
+            <ion-icon [name]="item.icon" slot="start"></ion-icon>
+            <ion-label>{{item.title}}</ion-label>
+          </ion-item>
+        
+          <ion-card-content>
+            {{item.descripcion}}
+          </ion-card-content>
+        </ion-card>
 
+      
+    </ion-list>
+  </div>
 </ion-content>
 

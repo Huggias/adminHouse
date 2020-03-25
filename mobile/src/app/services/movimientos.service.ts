@@ -22,15 +22,7 @@ export class MovimientosService{
     return this.http.get(URL_SERVER+"/api/getUltimosMovimientos");
    }
    public createMovimiento(newMovimiento) {
-    const http = this.http.post(URL_SERVER+"/api/createMovimiento", newMovimiento);
-    http.subscribe(
-        res => {
-          console.log(res)
-          return res;
-        },
-        err => console.log(err)
-    );
-    return http;
+    return this.http.post(URL_SERVER+"/api/createMovimiento", newMovimiento);
    }
    public deleteMovimiento(idMovimiento){
     return this.http.delete(URL_SERVER+'/api/deleteMovimiento/'+idMovimiento);

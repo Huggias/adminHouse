@@ -17,6 +17,9 @@ import tareasRoutes from './routes/tareas.routes';
 import ComprasRoutes from "./routes/compras.routes";
 import ListaComprasRoutes from "./routes/listaCompras.routes";
 import MovimientosRoutes from "./routes/movimientos.routes";
+import IngredientesRoutes from "./routes/ingredientes.routes";
+import MenusRoutes from "./routes/menus.routes";
+import MenuDiaRoutes from "./routes/menudia.routes";
 
 import { verifyToken } from "./middlewares/sigin.middlewares";
 // import Colors = require('colors.ts');
@@ -36,14 +39,14 @@ export class App {
     }
 
     sockets(){
-        this.io.on('connection', (socket : any)=>{
-            socket.on("modCompras", () => {
-                const compras = sqlCompra.getCompras();
-                compras.then( res => {
-                    this.io.sockets.emit('modCompras', res);
-                })
-            });
-        })
+        // this.io.on('connection', (socket : any)=>{
+        //     socket.on("modCompras", () => {
+        //         const compras = sqlCompra.getCompras();
+        //         compras.then( res => {
+        //             this.io.sockets.emit('modCompras', res);
+        //         })
+        //     });
+        // })
     }
 
     settings(){
@@ -72,6 +75,9 @@ export class App {
         this.app.use('/api',tareasRoutes);
         this.app.use('/api',ListaComprasRoutes);
         this.app.use('/api',MovimientosRoutes);   
+        this.app.use('/api',IngredientesRoutes);   
+        this.app.use('/api',MenusRoutes);   
+        this.app.use('/api',MenuDiaRoutes);   
     }
 
     listen(){

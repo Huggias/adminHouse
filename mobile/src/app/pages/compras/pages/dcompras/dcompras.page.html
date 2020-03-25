@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="tertiary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -27,8 +27,8 @@
           <ion-card-content>
             <table style="width: 100%;">
               <tr>
-                <td width="50%">{{item.descripcion}}</td>
-                <td width="50%" style="text-align: right; font-size: 1.5em;"><ion-icon style="cursor: pointer" ios="ios-trash" md="md-trash" (click)="handleButtonClick(item.idCompra)"></ion-icon></td>
+                <td width="90%">{{item.descripcion}}</td>
+                <td *ngIf="miId.id == item.idUsuario" width="10%" style="text-align: right; font-size: 1.5em;"><ion-icon style="cursor: pointer" ios="ios-trash" md="md-trash" (click)="handleButtonClick(item.idCompra)"></ion-icon></td>
               </tr>
             </table>
           </ion-card-content>

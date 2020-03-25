@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-icon (click)="back()" ios="ios-arrow-back" md="md-arrow-back" style="margin-left:7px; font-size: 1.5em;"></ion-icon>
+    </ion-buttons>
+    <ion-title>Editando mediodia del {{dia}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon (click)="refresh()" style="font-size: 1.5em; margin-right: 15px; cursor: pointer;" ios="ios-refresh" md="md-refresh"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <div style="width: 100%; height: 100%; background-color: #f4f4f4;">
+    <form #form="ngForm" (ngSubmit)="saveDia(form)">
+
+      <!-- <div>
+        <ion-item>
+          <ion-label position="floating">Username</ion-label>
+          <ion-input name="username" type="text"  ngModel required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input name="password" type="password" ngModel required></ion-input>
+        </ion-item>
+      </div> -->
+      <ion-list *ngIf="datos != undefined" style="background-color: #f4f4f4;">
+        <ion-item>
+          <ion-label>Menu</ion-label>
+          <ion-select name="idMenu" interface="action-sheet" [(ngModel)]="datos.idMenu" value="{{datos.idMenu}}">
+            <ion-select-option *ngFor="let menu of menus" value="{{menu.idMenu}}">{{menu.nombre}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+         <ion-list-header>
+          <ion-label>
+            Organizacion
+          </ion-label>
+        </ion-list-header>
+        <ion-item>
+          <ion-label>Cocina</ion-label>
+          <ion-select name="cocina" interface="action-sheet" [(ngModel)]="datos.idCocina" value="{{datos.idCocina}}">
+           <ion-select-option *ngFor="let user of usuarios" value="{{user.id}}">{{user.username}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Preparacion</ion-label>
+          <ion-select name="preparacion" interface="action-sheet" [(ngModel)]="datos.idPreparacion" value="{{datos.idPreparacion}}">
+           <ion-select-option *ngFor="let user of usuarios" value="{{user.id}}">{{user.username}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Verificacion</ion-label>
+          <ion-select name="verificacion" interface="action-sheet" [(ngModel)]="datos.idVerificacion" value="{{datos.idVerificacion}}">
+           <ion-select-option *ngFor="let user of usuarios" value="{{user.id}}">{{user.username}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+      <div padding style="top:85%;  position:fixed; width:100%; background-color: white; border-top:1px solid grey">
+        <ion-button size="large" type="submit" expand="block">Guardar Dia</ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>

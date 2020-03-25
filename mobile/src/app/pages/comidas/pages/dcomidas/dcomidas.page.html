@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Dias</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon (click)="refresh()" style="font-size: 1.5em; margin-right: 15px; cursor: pointer;" ios="ios-refresh" md="md-refresh"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="width: 100%; height: 100%; background-color: #f4f4f4;">
+    <ion-list *ngIf="check" style="background-color: #f4f4f4;">
+      <ion-card style="background-color: white;" *ngFor="let dia of items" (click)="openEditDia(dia.dia)">
+        <ion-card-header>
+          <table style="width: 100%;">
+            <tr>
+              <td width="100%" text-center><ion-title><h1>{{dia.dia}}</h1></ion-title></td>
+            </tr>
+          </table>
+        </ion-card-header>
+
+        <ion-card-content>
+          
+          <span style="font-size: 1.5em;">Menus</span>
+          <table class="tablaMenus">
+            <tr>
+              <td>Mediodia</td>
+              <td>{{dia.mediodia}}</td>
+            </tr>
+            <tr>
+              <td>Noche</td>
+              <td>{{dia.noche}}</td>
+            </tr>
+          </table>
+          <br>
+          <span style="font-size: 1.5em;">Organizacion</span>
+          <table class="tablaMenus">
+            <tr>
+              <td></td>
+              <td>Mediodia</td>
+              <td>Noche</td>
+            </tr>
+            <tr>
+              <td>Cocina</td>
+              <td>{{dia.cocinaD}}</td>              
+              <td>{{dia.cocinaN}}</td>
+            </tr>
+            <tr>
+              <td>Preparacion</td>
+              <td>{{dia.preparacionD}}</td>              
+              <td>{{dia.preparacionN}}</td>
+            </tr>
+            <tr>
+              <td>Verificacion</td>
+              <td>{{dia.verificacionD}}</td>              
+              <td>{{dia.verificacionN}}</td>
+            </tr>
+          </table>
+          <!-- <table style="width: 100%;">
+            <tr>
+              <td width="50%">hola</td>
+              <td width="50%" style="text-align: right; font-size: 1.5em;"><ion-icon style="cursor: pointer" ios="ios-trash" md="md-trash" (click)="handleButtonClick(item.idCompra)"></ion-icon></td>
+            </tr>
+          </table> -->
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+  </div>
+</ion-content>
