@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { setActive } from '../../setMenuActive'
-  import { from } from 'rxjs';
+import { from } from 'rxjs';
+import usr from "../../../user";
 @Component({
   selector: 'app-tareas',
   templateUrl: './tareas.page.html',
@@ -11,6 +12,9 @@ export class TareasPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    if (usr[0].username == "") {
+        usr[0].username = localStorage.getItem("username");
+      }
     setActive("Tareas de limpieza");
   }
 

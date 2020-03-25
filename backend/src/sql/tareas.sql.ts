@@ -22,14 +22,12 @@ class SqlTareas{
     }
 
     public async getMisTareas(userId : string): Promise<any> {
-        const query : string = "SELECT * FROM `tareausuario` NATURAL JOIN tareas WHERE `idUsuario` = "+userId;
-        // this.conn.destroy();
-        const users = await this.conn.query(query);
+        const users = await this.conn.query("SELECT * FROM `tareas` t INNER JOIN tareausuario ta ON (t.idTarea = ta.idTarea) WHERE ta.idUsuario = ?", [userId]);
         return users[0];
     }
 
     public async createTarea(newTarea : any): Promise<void> {
-        await this.conn.query("INSERT INTO `tareas`(`idUsuario`, `nombre`, `descripcion`) VALUES (?,?,?)",[newTarea.idUsuario, newTarea.nombre, newTarea.descripcion]);
+        await this.conn.query("INSERT INTO `tareas`(`nombre`, `descripcion`) VALUES (?,?)",[newTarea.nombre, newTarea.descripcion]);
         // this.conn.destroy();
     }
 

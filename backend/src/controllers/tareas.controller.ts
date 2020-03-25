@@ -25,10 +25,15 @@ export  function getMisTareas(req:Request, res:Response):void | Response{
             const token = req.headers.authorization;
             const tokenObj : any | undefined =  jwt.verify(token, tokenKey);
             const tareas : any = sqlTareas.getMisTareas(tokenObj._id);
+            console.log("id: ",tokenObj._id);
             tareas.then( (result : any[]) =>{
-                return res.json(result);
+                console.log(result);
+                sqlTareas.disConnecToMysql().then(
+                    resp =>{
+                        return res.json(result);
+                    }
+                )
             })
-            sqlTareas.disConnecToMysql().then()
         }
     )
 }
@@ -36,15 +41,15 @@ export  function getMisTareas(req:Request, res:Response):void | Response{
 export  function createTarea(req:Request, res:Response):void | Response{
     sqlTareas.connecToMysql().then(
         resp => {
-            if (!req.headers.authorization) { return res.status(401).send("Necesitas estar logeado"); }
-            const token = req.headers.authorization;
-            const tokenObj : any | undefined =  jwt.verify(token, tokenKey);
-            let newTarea = {"idUsuario" : tokenObj._id, "nombre":req.body.nombre, "descripcion":req.body.descripcion}
+            let newTarea = { "nombre":req.body.nombre, "descripcion":req.body.descripcion}
             const tareaAgregada = sqlTareas.createTarea(newTarea);
             tareaAgregada.then( () => {
-                return res.json("se agrego la tarea");
+                sqlTareas.disConnecToMysql().then(
+                    resp => {
+                        return res.json("se agrego la tarea");
+                    }
+                )
             })
-            sqlTareas.disConnecToMysql().then()
         }
     )
 }
@@ -54,9 +59,12 @@ export  function deleteTarea(req:Request, res:Response):void{
         resp => {
             const tareaBorrada : any = sqlTareas.deleteTarea(req.params.idTarea);
             tareaBorrada.then( () =>{
-                return res.json("se borro la tarea");
+                sqlTareas.disConnecToMysql().then(
+                    resp => {
+                        return res.json("se borro la tarea");
+                    }
+                )
             })
-            sqlTareas.disConnecToMysql().then()
         }
     )
 }

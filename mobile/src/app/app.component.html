@@ -6,7 +6,7 @@
         <!-- <img class="imgMenu" src="https://cdn.pixabay.com/photo/2018/03/27/14/37/design-3266151_1280.png" alt=""> -->
         <img class="imgMenu" src="https://i.ibb.co/vHzbgnY/bg.png" alt="">
         
-        <div style="margin-top:-50px; margin-left:10px; color:white; font-size: 2em; font-weight: bold; font-family: Georgia, serif;">Menu</div>
+        <div *ngFor="let usr of user" style="margin-top:-50px; margin-left:10px; color:white; font-size: 2em; font-weight: bold; font-family: Georgia, serif;">{{usr.username}}</div>
       </div>
       <div class="bodyMenu">
         <ion-content>

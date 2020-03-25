@@ -7,6 +7,7 @@ router.route('/getUsers')
     
 router.route('/getId')
     .get(getId)
+    
 router.route('/getUser/:userid')
     .get(getUser);
 

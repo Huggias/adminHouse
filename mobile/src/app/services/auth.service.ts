@@ -38,9 +38,14 @@ export class AuthService {
     return this.http.get(URL_SERVER+'/log/getId');
   }
 
+  public getUser(idUser){
+    return this.http.get(URL_SERVER+'/log/getUser/'+idUser);
+  }
+
   public logout(){
     console.log("deslogeando");
     localStorage.removeItem('token');
+    localStorage.removeItem('username');
     this.router.navigate(['/login']);
   }
 

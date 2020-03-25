@@ -41,9 +41,12 @@ export function getUser(req:Request, res:Response):void{
             const id = req.params.userid;
             const user = sqlUser.getUser(id);
             user.then( (result: iUser)=>{
-                return res.json(result);
+                sqlUser.disConnecToMysql().then(
+                    resp =>{
+                        return res.json(result);
+                    }
+                )
             } )
-            sqlUser.disConnecToMysql().then()
         }
     )
 }
@@ -76,7 +79,7 @@ export function signIn(req:Request, res:Response):void {
                     const token = jwt.sign({
                         _id : result[0].id
                     }, tokenKey)
-                    return res.status(200).json({token})
+                    return res.status(200).json([{token},{userId:result[0].id, username : result[0].username}])
                 }else{
                     return res.status(400).json("Las credenciales de usuario no son correctas")
                 }

@@ -35,7 +35,7 @@ export class MediodiaPage implements OnInit {
     });
     toast.present();
   }
-  async ngOnInit() {
+  async refresh(){
     const loading = await this.loadingController.create({
       message: 'Cargando...'
     });
@@ -79,6 +79,9 @@ export class MediodiaPage implements OnInit {
       }
     )
     console.log(this.dia);
+  }
+  async ngOnInit() {
+    this.refresh();
   }
   public test(idMenu){
     console.log(idMenu);

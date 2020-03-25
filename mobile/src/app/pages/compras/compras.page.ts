@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { setActive } from "../../setMenuActive";
+import usr from "../../../user";
+
 @Component({
   selector: 'app-compras',
   templateUrl: './compras.page.html',
@@ -10,6 +12,9 @@ export class ComprasPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    if (usr[0].username == "") {
+      usr[0].username = localStorage.getItem("username");
+    }
     setActive("Compras");
   }
 

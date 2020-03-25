@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 import { LoadingController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
-import usr from "../../../idUsuario";
+import usr from "../../../user";
 // import io from 'socket.io-client';
 // import { URL_SERVER } from "../../../URL_SERVER";
 @Component({
@@ -14,6 +14,7 @@ import usr from "../../../idUsuario";
 })
 export class LoginPage implements OnInit {
   socket : any;
+  username : string;
   constructor(
     private auth : AuthService,
     private router : Router,
@@ -38,15 +39,14 @@ export class LoginPage implements OnInit {
   ngOnInit() {
     this.menu.enable(false);
     if (this.auth.loggedIn()) {
+      usr[0].username = localStorage.getItem("username");
+      console.log("desde login auto");
+      console.log(usr);
       this.presentToast();
       this.menu.enable(true);
       this.router.navigate(['/home']);
     }
     // this.socket = io(URL_SERVER);
-  }
-  public setId(id){
-    console.log(usr);
-    usr.id = id;
   }
   public async login(form){
     const loading = await this.loadingController.create({
@@ -56,10 +56,15 @@ export class LoginPage implements OnInit {
     this.auth.signin(form.value).subscribe(
       res => {
         console.log("logeado!!!");
+        console.log(res);
         this.presentToast();
         this.menu.enable(true);
         loading.dismiss();
-        localStorage.setItem('token', res.token);
+        localStorage.setItem('token', res[0].token);
+        usr[0].username = res[1].username;
+        console.log("usr");
+        console.log(usr);
+        localStorage.setItem('username', res[1].username);
         this.router.navigate(['/home']);
       },
       err => {
